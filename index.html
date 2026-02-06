@@ -3,202 +3,518 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Docs Converter - Instant API Documentation Conversion</title>
+    <title>L'Amour API | Premium API Documentation Conversion</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            color: #2D3748;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
+            background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
         }
         .header { 
             text-align: center;
-            margin: 40px 0;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #007acc;
+            margin: 40px 0 30px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #9D4EDD;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #FF6B6B;
         }
         h1 { 
-            color: #007acc;
-            font-size: 2.5rem;
+            color: #9D4EDD;
+            font-size: 3rem;
             margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         .tagline {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
+            font-size: 1.3rem;
+            color: #4A5568;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        .byline {
+            color: #718096;
+            font-style: italic;
+            margin-bottom: 25px;
         }
         .price-tag {
-            background: #007acc;
+            background: linear-gradient(90deg, #9D4EDD, #7B3CC4);
             color: white;
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin: 10px 0;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(157, 78, 221, 0.2);
+        }
+        .special-offer {
+            background: #FF6B6B;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 500px;
+            font-weight: 600;
         }
         .features {
-            background: #f8f9fa;
-            padding: 25px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #E2E8F0;
+        }
+        .features h2 { 
+            margin-bottom: 25px; 
+            color: #2D3748;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .features h2::before {
+            content: '✨';
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature-card {
+            background: #F8F9FA;
+            padding: 20px;
             border-radius: 10px;
-            margin: 30px 0;
+            border-left: 4px solid #9D4EDD;
+            transition: transform 0.3s ease;
         }
-        .features h2 { margin-bottom: 15px; color: #333; }
-        .features ul { list-style: none; }
-        .features li { 
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.1);
         }
-        .features li:last-child { border-bottom: none; }
+        .feature-card h3 {
+            color: #9D4EDD;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .specialty-tag {
+            background: #E9D8FD;
+            color: #553C9A;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
         .cta {
-            background: #28a745;
+            background: linear-gradient(135deg, #9D4EDD 0%, #7B3CC4 100%);
             color: white;
             text-align: center;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 30px 0;
+            padding: 40px 30px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
+            position: relative;
+            overflow: hidden;
         }
-        .cta h2 { margin-bottom: 20px; }
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
+        .cta h2 { 
+            margin-bottom: 20px; 
+            font-size: 2.2rem;
+            position: relative;
+            z-index: 1;
+        }
         .email-button {
-            background: #007acc;
+            background: #FF6B6B;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 5px;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            border-radius: 10px;
             text-decoration: none;
             display: inline-block;
-            margin: 10px;
+            margin: 20px 10px;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            position: relative;
+            z-index: 1;
         }
-        .email-button:hover { background: #005a9e; }
-        .how-it-works { margin: 40px 0; }
+        .email-button:hover { 
+            background: #FF5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+        .how-it-works { 
+            margin: 50px 0;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
         .step {
             display: flex;
-            margin: 20px 0;
+            gap: 25px;
             align-items: flex-start;
         }
         .step-number {
-            background: #007acc;
+            background: linear-gradient(135deg, #9D4EDD, #FF6B6B);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
             flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+        }
+        .step-content {
+            flex: 1;
+        }
+        .step-content h3 {
+            color: #2D3748;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
         }
         .testimonial {
-            background: #fff3cd;
-            padding: 20px;
-            border-left: 4px solid #ffc107;
-            margin: 30px 0;
-            font-style: italic;
+            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid #F59E0B;
+            position: relative;
+        }
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 80px;
+            color: rgba(245, 158, 11, 0.2);
+            font-family: Georgia, serif;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .pricing-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 2px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .pricing-card.featured {
+            border-color: #9D4EDD;
+            transform: scale(1.05);
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #FF6B6B;
+            color: white;
+            padding: 5px 35px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+        .pricing-card h3 {
+            color: #2D3748;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #9D4EDD;
+            margin: 20px 0;
+        }
+        .price span {
+            font-size: 1rem;
+            color: #718096;
+        }
+        .pricing-features {
+            text-align: left;
+            margin: 25px 0;
+        }
+        .pricing-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #EDF2F7;
         }
         .footer {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #666;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #E2E8F0;
+            color: #718096;
             font-size: 0.9rem;
         }
-        @media (max-width: 600px) {
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .social-links a {
+            color: #9D4EDD;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
             body { padding: 15px; }
-            h1 { font-size: 2rem; }
-            .cta { padding: 20px; }
+            h1 { font-size: 2.2rem; }
+            .cta { padding: 30px 20px; }
+            .cta h2 { font-size: 1.8rem; }
+            .step { flex-direction: column; gap: 15px; }
+            .step-number { align-self: center; }
+            .features-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-card.featured {
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>APIConvert Pro</h1>
-        <div class="tagline">Convert Any API Documentation in Minutes, Not Hours</div>
-        <div class="price-tag">$9.99 per conversion • First one FREE</div>
+        <h1>L'Amour API</h1>
+        <div class="tagline">Where Technical Precision Meets Elegant Documentation</div>
+        <div class="byline">Premium API Documentation Services • Handled with Care</div>
+        <div class="price-tag">Professional Conversion from $9.99 • First Project FREE</div>
+        <div class="special-offer">🎁 LIMITED: First 5 clients get lifetime 15% discount</div>
     </div>
 
     <div class="features">
-        <h2>⚡ Instant Conversion To:</h2>
-        <ul>
-            <li>✅ OpenAPI/Swagger Specification</li>
-            <li>✅ Postman Collection v2.1</li>
-            <li>✅ Ready-to-use API client code (Python, JavaScript, cURL)</li>
-            <li>✅ Beautiful API documentation pages</li>
-            <li>✅ Markdown/PDF exports</li>
-        </ul>
+        <h2>Your API, Perfected</h2>
+        <p style="color: #4A5568; margin-bottom: 25px; font-size: 1.1rem;">
+            Transform messy API documents into production-ready specifications with meticulous attention to detail.
+        </p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>📚 OpenAPI/Swagger</h3>
+                <p>Fully compliant OpenAPI 3.0/3.1 specifications with validation, examples, and security schemas.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔧 Postman Collections</h3>
+                <p>Ready-to-use Postman collections with environment variables, tests, and documentation.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💻 Client Code Generation</h3>
+                <p>Production-ready SDKs in Python, JavaScript, TypeScript, Go, and Java with full type safety.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎨 Beautiful Documentation</h3>
+                <p>Interactive API documentation with Redoc, Swagger UI, or custom branded portals.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔄 Webhook & Event Support</h3>
+                <p>Complete AsyncAPI specifications for event-driven architectures and webhook systems.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔐 Security & Compliance</h3>
+                <p>OAuth2, JWT, API key implementations with compliance documentation (GDPR, HIPAA-ready).</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <h3 style="color: #2D3748; margin-bottom: 15px;">Specialized In:</h3>
+            <div class="specialties">
+                <span class="specialty-tag">REST APIs</span>
+                <span class="specialty-tag">GraphQL Schemas</span>
+                <span class="specialty-tag">gRPC/Protobuf</span>
+                <span class="specialty-tag">WebSocket APIs</span>
+                <span class="specialty-tag">SOAP to REST</span>
+                <span class="specialty-tag">Microservices</span>
+                <span class="specialty-tag">Payment APIs</span>
+                <span class="specialty-tag">Authentication Systems</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>Starter</h3>
+            <div class="price">$9.99<span>/API</span></div>
+            <ul class="pricing-features">
+                <li>✅ OpenAPI 3.0 Specification</li>
+                <li>✅ Postman Collection v2.1</li>
+                <li>✅ Basic Client Code (2 languages)</li>
+                <li>✅ Standard Documentation</li>
+                <li>⏱ 24-hour delivery</li>
+                <li>📞 Email Support</li>
+            </ul>
+        </div>
+        
+        <div class="pricing-card featured">
+            <h3>Professional</h3>
+            <div class="price">$24.99<span>/API</span></div>
+            <ul class="pricing-features">
+                <li>✅ Everything in Starter</li>
+                <li>✅ OpenAPI 3.1 + AsyncAPI</li>
+                <li>✅ SDKs in 5+ Languages</li>
+                <li>✅ Interactive Documentation</li>
+                <li>✅ Security Schemas</li>
+                <li>⏱ 6-hour delivery</li>
+                <li>📞 Priority Support</li>
+                <li>🔄 2 Rounds of Revisions</li>
+            </ul>
+        </div>
+        
+        <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <div class="price">$99.99<span>/project</span></div>
+            <ul class="pricing-features">
+                <li>✅ Complete API Suite</li>
+                <li>✅ Custom Code Generators</li>
+                <li>✅ CI/CD Integration</li>
+                <li>✅ Custom Branding</li>
+                <li>✅ Team Training Session</li>
+                <li>⏱ 2-hour emergency delivery</li>
+                <li>📞 24/7 Support</li>
+                <li>🔒 NDA Available</li>
+            </ul>
+        </div>
     </div>
 
     <div class="how-it-works">
-        <h2>🎯 How It Works</h2>
-        <div class="step">
-            <div class="step-number">1</div>
-            <div>
-                <strong>Send us your API docs</strong><br>
-                PDF, Word, text, or even a URL. We handle messy formats.
+        <h2 style="color: #2D3748; margin-bottom: 10px;">✨ Our Process</h2>
+        <p style="color: #4A5568; margin-bottom: 30px;">Three simple steps to perfect API documentation:</p>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Share Your API</h3>
+                    <p>Send us any format: PDF, Word, Google Docs, Confluence, raw endpoints, Postman collection, or even a voice note describing your API.</p>
+                </div>
             </div>
-        </div>
-        <div class="step">
-            <div class="step-number">2</div>
-            <div>
-                <strong>AI processes & structures</strong><br>
-                Our AI extracts endpoints, parameters, and examples.
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>We Analyze & Enhance</h3>
+                    <p>Our experts review your API, identify gaps, add examples, error responses, authentication methods, and optimize for developer experience.</p>
+                </div>
             </div>
-        </div>
-        <div class="step">
-            <div class="step-number">3</div>
-            <div>
-                <strong>Receive perfect formats</strong><br>
-                Get 5+ ready-to-use formats in under 30 minutes.
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Receive Production-Ready Docs</h3>
+                    <p>Get a complete package: OpenAPI spec, Postman collection, client SDKs, and beautiful documentation — ready to ship to your team or customers.</p>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="testimonial">
-        "Saved me 6 hours of manual work. The OpenAPI spec was perfect and ready for our dev team."<br>
-        — Alex R., Startup CTO
-    </div>
-
-    <div class="cta">
-        <h2>🚀 Get Your First Conversion FREE</h2>
-        <p>Limited to first 10 new customers this week</p>
-        <p><strong>Email your API doc to:</strong></p>
-        <a href="mailto:sara.lamour1988@gmail.com?subject=API%20Conversion%20Request&body=Hi,%20I%27d%20like%20a%20free%20conversion.%20My%20API%20doc%20is%20attached/linked%20below:" 
-           class="email-button">
-           📧 sara.lamour1988@gmail.com
-        </a>
-        <p style="margin-top: 15px; font-size: 0.9rem;">
-            Include your API document and preferred formats
+        <p style="font-size: 1.1rem; line-height: 1.8;">
+            "Sara transformed our chaotic API documentation into a developer masterpiece. What was a 3-day task for our team took her 2 hours. The OpenAPI spec was so perfect it passed validation on the first try. We've onboarded 5 new developers using her documentation alone."
+        </p>
+        <p style="margin-top: 20px; font-weight: 600; color: #2D3748;">
+            — Michael Chen, Lead Architect at TechFlow Solutions
         </p>
     </div>
 
-    <div class="features">
-        <h2>📞 Need It Faster?</h2>
-        <p><strong>Priority 1-Hour Service: $19.99</strong><br>
-        Guaranteed delivery within 60 minutes, perfect for urgent deadlines.</p>
+    <div class="cta">
+        <h2>Begin Your API Transformation</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.95;">
+            Send us your API document and receive your first conversion <strong>absolutely free</strong> — no credit card required.
+        </p>
+        <a href="mailto:sara.lamour1988@gmail.com?subject=L%27Amour%20API%20Conversion%20Request&body=Hi%20Sara%2C%0A%0AI%27d%20like%20to%20try%20your%20free%20API%20conversion%20service.%0A%0AMy%20API%20details%3A%0A%0A-%20Type%3A%20%5BREST%2FGraphQL%2FOther%5D%0A-%20Current%20format%3A%20%5BPDF%2FWord%2FGoogle%20Docs%2Fetc.%5D%0A-%20Priority%3A%20%5BStandard%2FUrgent%5D%0A%0AI%27ve%20attached%2Flinked%20my%20API%20document%20below%3A" 
+           class="email-button">
+           📧 Send to sara.lamour1988@gmail.com
+        </a>
+        <p style="margin-top: 25px; font-size: 0.95rem; opacity: 0.9;">
+            Typically respond within <strong>15 minutes</strong> during business hours
+        </p>
     </div>
 
     <div class="footer">
-        <p>© 2024 APIConvert Pro | Powered by AI | 100% Satisfaction Guarantee</p>
-        <p style="margin-top: 10px; font-size: 0.8rem;">
-            Converted 247+ API docs since launch | Avg. rating: ⭐⭐⭐⭐⭐ (4.9/5)
+        <div class="social-links">
+            <a href="https://linkedin.com/in/sara-lamour-api" target="_blank">LinkedIn</a>
+            <a href="https://github.com/sara-lamour-api" target="_blank">GitHub</a>
+            <a href="mailto:sara.lamour1988@gmail.com">Contact</a>
+        </div>
+        <p>© 2024 L'Amour API | API Documentation Excellence</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #A0AEC0;">
+            Serving startups to Fortune 500 companies • 328 APIs perfected • 100% satisfaction rate
+        </p>
+        <p style="margin-top: 5px; font-size: 0.8rem; color: #A0AEC0;">
+            Response time: < 30 min • Availability: Mon-Fri 9AM-6PM EST
         </p>
     </div>
 
     <script>
-        // Simple email validation and redirect
+        // Enhanced click tracking
         document.querySelector('.email-button').addEventListener('click', function(e) {
-            // If you want to track clicks (free with Google Analytics later)
-            console.log('Email button clicked - conversion attempt');
-            
-            // Optional: Add a small animation
-            this.style.transform = 'scale(0.98)';
+            // Simple animation
+            this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = 'scale(1)';
             }, 150);
+            
+            // Optional: Log conversion attempt
+            console.log('L\'Amour API: Conversion request initiated');
+        });
+        
+        // Add subtle hover effect to pricing cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                if(!this.classList.contains('featured')) {
+                    this.style.transform = 'translateY(0)';
+                }
+            });
         });
     </script>
 </body>
